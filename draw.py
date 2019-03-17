@@ -28,16 +28,6 @@ def add_box( points, x, y, z, width, height, depth ):
 
 
 
-
-  # ====================
-  # Generates all the points along the surface
-  # of a sphere with center (cx, cy, cz) and
-  # radius r.
-  # Returns a matrix of those points
-  # ====================
-def generate_sphere( points, cx, cy, cz, r, step ):
-    pass
-
   # ====================
   # adds all the points for a sphere with center
   # (cx, cy, cz) and radius r to points
@@ -45,7 +35,34 @@ def generate_sphere( points, cx, cy, cz, r, step ):
   # necessary points
   # ====================
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    sphere_points = generate_sphere(points, cx, cy, cz, r, step)
+
+    for pt in sphere_points:
+        #print(pt)
+        add_edge(points, pt[0], pt[1], pt[2], pt[0]+1, pt[1], pt[2])
+
+    # ====================
+    # Generates all the points along the surface
+    # of a sphere with center (cx, cy, cz) and
+    # radius r.
+    # Returns a matrix of those points
+    # ====================
+def generate_sphere( points, cx, cy, cz, r, step ):
+    pts = []
+
+
+    for m in [x * step for x in range(0, 100)]:
+        print(m)
+
+        for n in [x * step for x in range(0, 100)]:
+            x = r * math.cos(math.pi * n) + cx
+            y = r * math.sin(math.pi * n) * math.cos(2 * math.pi * m) + cy
+            z = r * math.sin(math.pi * n) * math.sin(2 * math.pi * m) + cz
+            add_point(pts, x, y, z)
+
+    return pts
+
+
 
 
   # ====================

@@ -47,7 +47,7 @@ The file follows the following format:
 
 See the file script for an example of the file format
 """
-ARG_COMMANDS = [ 'circle', 'bezier', 'hermite', 'line', 'scale', 'move', 'rotate', 'save', 'clear', 'box', 'sphere', 'torus']
+ARG_COMMANDS = [ 'circle', 'bezier', 'hermite', 'line', 'scale', 'move', 'rotate', 'save', 'box', 'sphere', 'torus']
 
 def parse_file( fname, edges, transform, screen, color ):
 
@@ -59,6 +59,7 @@ def parse_file( fname, edges, transform, screen, color ):
     c = 0
     while c < len(lines):
         line = lines[c].strip()
+        #print(line)
         #print ':' + line + ':'
 
         if line in ARG_COMMANDS:
@@ -131,8 +132,9 @@ def parse_file( fname, edges, transform, screen, color ):
             add_box( edges, float(args[0]), float(args[1]), float(args[2]), float(args[3]), float(args[4]), float(args[5]) )
 
         elif line == 'torus':
-            add_torus( edges, float(args[0]), float(args[1]), float(args[2]), float(args[3]), float(args[4]),1)
+            add_torus( edges, float(args[0]), float(args[1]), float(args[2]), float(args[3]), float(args[4]), step)
 
         elif line == 'sphere':
-            add_sphere( edges, float(args[0]), float(args[1]), float(args[2]), float(args[3]), 1)
+            #print("RUN")
+            add_sphere( edges, float(args[0]), float(args[1]), float(args[2]), float(args[3]), step)
         c+= 1

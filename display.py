@@ -1,6 +1,6 @@
 from subprocess import Popen, PIPE
 from os import remove
-
+import time
 #constants
 XRES = 500
 YRES = 500
@@ -57,4 +57,5 @@ def display( screen ):
     #p = Popen( ['display', ppm_name], stdin=PIPE, stdout = PIPE )
     p = Popen( ['open', ppm_name], stdin=PIPE, stdout = PIPE )
     p.communicate()
-    #remove(ppm_name)
+    time.sleep(3)
+    remove(ppm_name)
