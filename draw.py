@@ -7,26 +7,23 @@ from matrix import *
   # height and depth dimensions.
   # ====================
 def add_box( points, x, y, z, width, height, depth ):
-    add_edge(points, x, y, z, x, y, z+depth);
+    add_edge(points, x, y, z, x, y, z-depth);
     add_edge(points, x, y, z, x+width, y, z);
     add_edge(points, x, y, z, x, y+height, z);
 
-    add_edge(points, x, y+height, z, x, y+height, z+depth);
+    add_edge(points, x, y+height, z, x, y+height, z-depth);
     add_edge(points, x, y+height, z, x+width, y+height, z);
 
     add_edge(points, x+width, y+height, z, x+width, y, z);
-    add_edge(points, x+width, y+height, z, x+width, y+height, z+depth);
+    add_edge(points, x+width, y+height, z, x+width, y+height, z-depth);
 
-    add_edge(points, x+width, y+height, z+depth, x, y+height, z+depth);
-    add_edge(points, x+width, y+height, z+depth, x+width, y, z+depth);
+    add_edge(points, x+width, y+height, z-depth, x, y+height, z-depth);
+    add_edge(points, x+width, y+height, z-depth, x+width, y, z-depth);
 
-    add_edge(points, x+width, y, z+depth, x+width, y, z);
-    add_edge(points, x+width, y, z+depth, x, y, z+depth);
+    add_edge(points, x+width, y, z-depth, x+width, y, z);
+    add_edge(points, x+width, y, z-depth, x, y, z-depth);
 
-    add_edge(points, x, y, z+depth, x, y+height, z+depth);
-
-
-
+    add_edge(points, x, y, z-depth, x, y+height, z-depth);
 
   # ====================
   # adds all the points for a sphere with center
@@ -39,7 +36,7 @@ def add_sphere( points, cx, cy, cz, r, step ):
 
     for pt in sphere_points:
         #print(pt)
-        add_edge(points, pt[0], pt[1], pt[2], pt[0]+1, pt[1], pt[2])
+        add_edge(points, pt[0], pt[1], pt[2], pt[0]+1, pt[1]+1, pt[2]+1)
 
     # ====================
     # Generates all the points along the surface
@@ -88,7 +85,7 @@ def add_torus( points, cx, cy, cz, r0, r1, step ):
 
     for pt in torus_points:
         #print(pt)
-        add_edge(points, pt[0], pt[1], pt[2], pt[0]+1, pt[1], pt[2])
+        add_edge(points, pt[0], pt[1], pt[2], pt[0]+1, pt[1]+1, pt[2]+1)
 
 
 
