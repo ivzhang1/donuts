@@ -1,6 +1,6 @@
 from subprocess import Popen, PIPE
 from os import remove
-import time
+
 #constants
 XRES = 500
 YRES = 500
@@ -54,8 +54,6 @@ def save_extension( screen, fname ):
 def display( screen ):
     ppm_name = 'pic.ppm'
     save_ppm( screen, ppm_name )
-    #p = Popen( ['display', ppm_name], stdin=PIPE, stdout = PIPE )
-    p = Popen( ['open', ppm_name], stdin=PIPE, stdout = PIPE )
+    p = Popen( ['display', ppm_name], stdin=PIPE, stdout = PIPE )
     p.communicate()
-    time.sleep(3)
     remove(ppm_name)
